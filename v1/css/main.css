@@ -44,7 +44,7 @@ body {
     margin: 0;
     font-family: 'ABeeZee', sans-serif;
     color: #151515;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 /* Links and Text */
