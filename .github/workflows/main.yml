@@ -20,4 +20,5 @@ jobs:
       with:
         azcliversion: latest
         inlineScript: |
-          az storage blob upload-batch -s $GITHUB_WORKSPACE/ -d \$web --destination-path errors --account-name ${{ secrets.STORAGE_ACCOUNT_NAME }} --account-key ${{ secrets.STORAGE_ACCOUNT_KEY }}
+          az storage blob delete-batch -s "\$web" --pattern errors\* --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
+          az storage blob upload-batch -s $GITHUB_WORKSPACE/ -d \$web --destination-path errors --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
