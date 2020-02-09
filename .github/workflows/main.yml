@@ -1,3 +1,4 @@
+  
 name: Publish to WB Asset Server
 
 on: push
@@ -10,15 +11,10 @@ jobs:
     - name: Checkout the repo
       uses: actions/checkout@v2
 
-    - name: Login to Azure
-      uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-
     - name: Publish app
       uses: Azure/cli@v1.0.0
       with:
         azcliversion: latest
         inlineScript: |
           az storage blob delete-batch -s "\$web" --pattern errors\* --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
-          az storage blob upload-batch -s $GITHUB_WORKSPACE/ -d \$web --destination-path errors --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
+          az storage blob upload-batch -s $GITHUB_WORKSPACE/ -d "\$web" --destination-path errors --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
