@@ -1,4 +1,3 @@
-  
 name: Publish to WB Asset Server
 
 on: push
@@ -18,3 +17,11 @@ jobs:
         inlineScript: |
           az storage blob delete-batch -s "\$web" --pattern errors\* --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
           az storage blob upload-batch -s $GITHUB_WORKSPACE/ -d "\$web" --destination-path errors --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}"
+
+    - name: Purge cache
+      uses: jakejarvis/cloudflare-purge-action@master
+      env:
+        CLOUDFLARE_KEY: ${{ secrets.CLOUDFLARE_API_KEY }}
+        CLOUDFLARE_EMAIL: ${{ secrets.CLOUDFLARE_API_USER }}
+        CLOUDFLARE_ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+        PURGE_URLS: '["https://assets.williambargent.co.uk/errors/*"]'
