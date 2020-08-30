@@ -1,7 +1,7 @@
 ![Publish to WB Asset Server](https://github.com/WilliamBargentLimited/Responsive-Error-Pages/workflows/Publish%20to%20WB%20Asset%20Server/badge.svg)
 
 # Responsive-Error-Pages
-Responsive web error code pages templates for WB.
+Responsive error code web pages templates for WB.
 
 This project is licensed under [GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/#).
 
